@@ -36,7 +36,8 @@ public class Timeslot implements Comparable<Timeslot> {
     }
     //testbed
     public static void main (String[]args){
-        Timeslot slot = new Timeslot("02/15/2001, 9:46");
+        Timeslot slot = new Timeslot("02/15/2001,9:46");
+
 
 
     }
