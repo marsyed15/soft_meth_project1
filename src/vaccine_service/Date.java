@@ -78,10 +78,24 @@ public class Date implements Comparable<Date> {
 
     @Override
     public int compareTo(Date date) {
-        if(this.day == date.day && this.month == date.month && this.year == date.year){
+        if(this.year < date.year)
+            return -1;
+        else if(this.year > date.year)
             return 1;
+        else {
+            if(this.month < date.month)
+                return -1;
+            else if(this.month > date.month)
+                return 1;
+            else {
+                if(this.day < date.day)
+                    return -1;
+                else if (this.day > date.day)
+                    return 1;
+                else
+                    return 0;
+            }
         }
-        return 0;
     }
 
     public static void main(String[] args) {
