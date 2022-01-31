@@ -7,6 +7,7 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString() {
+        //does it have to be in a specific order?
         String patient = this.fname + ' ' + this.lname + ' ';
         //I want to add this.dob.month.toString() but it keeps giving me error
         return patient;
