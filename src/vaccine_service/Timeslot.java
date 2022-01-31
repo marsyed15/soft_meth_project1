@@ -5,15 +5,31 @@ public class Timeslot implements Comparable<Timeslot> {
     private Time time;
 
     public Timeslot(String timeslot) {
-        String[] split = timeslot.split(",");
+        String[] split = timeslot.split(", ");
         this.date = new Date(split[0]);
         this.time = new Time(split[1]);
-        System.out.println("date is " + date + " time is " + time);
+        System.out.println(time);
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+    public Time getTime() {
+        return this.time;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     @Override
     public String toString() {
-        return " " + this.date + " " + this.time;
+        return "" + this.date.getMonth() + "/" + this.date.getDay() + "/" + this.date.getYear() + ", " + this.time;
     }
 
     @Override
@@ -36,7 +52,11 @@ public class Timeslot implements Comparable<Timeslot> {
     }
     //testbed
     public static void main (String[]args){
-        Timeslot slot = new Timeslot("02/15/2001,9:46");
+        Timeslot slot = new Timeslot("02/15/2001, 9:46");
+        System.out.println(slot.toString());
+        Timeslot slot2 = new Timeslot("02/15/2001, 10:50");
+        System.out.println(slot.compareTo(slot2));
+        System.out.println(slot2.time.isValid());
 
 
 

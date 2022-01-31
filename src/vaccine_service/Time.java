@@ -11,6 +11,22 @@ public class Time implements Comparable<Time> {
         System.out.println("hour is " + this.hour + " minute is " + this.minute);
     }
 
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
     public boolean isValid() {
         return this.hour > 0 && this.hour <= 24 && this.minute >= 0 && this.minute <= 59;
     }
