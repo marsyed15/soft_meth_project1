@@ -4,9 +4,11 @@ public class Timeslot implements Comparable<Timeslot> {
     private Date date;
     private Time time;
 
-    public Timeslot(Timeslot slot) {
-        this.date = slot.date;
-        this.time = slot.time;
+    public Timeslot(String timeslot) {
+        String[] split = timeslot.split(",");
+        this.date = new Date(split[0]);
+        this.time = new Time(split[1]);
+        System.out.println("date is " + date + " time is " + time);
     }
 
     @Override
@@ -31,5 +33,11 @@ public class Timeslot implements Comparable<Timeslot> {
             }
 
         }
+    }
+    //testbed
+    public static void main (String[]args){
+        Timeslot slot = new Timeslot("02/15/2001, 9:46");
+
+
     }
 }
