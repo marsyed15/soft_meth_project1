@@ -5,6 +5,13 @@ public class Patient implements Comparable<Patient> {
     private String lname;
     private Date dob;
 
+    public Patient(String patient) {
+        String[] split = patient.split(" ");
+        this.dob = new Date(split[0]);
+        this.fname = split[1];
+        this.lname = split[2];
+    }
+
     @Override
     public String toString() {
         //does it have to be in a specific order?
@@ -15,19 +22,20 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public int compareTo(Patient patient) {
-        if(this.fname.equals(patient.fname) && this.lname.equals(patient.lname)
-            && this.dob.compareTo(patient.dob) == 0) {
-            return 0;
+        //sort by last name, then first, then dob
+        if(this.lname.compareTo(patient.lname) == 0) {
+            if(this.fname.compareTo(patient.fname) == 0) {
+                if(this.dob.compareTo(patient.dob) == 0)
+                    return 0;
+                return this.dob.compareTo(patient.dob);
+            }
+            return this.fname.compareTo(patient.fname);
         }
-        return -1;
+        return this.lname.compareTo(patient.lname);
     }
 
     public static void main(String[] args) {
-        Patient p = new Patient();
-        Date dob = new Date("10/7/2001");
-        p.fname = "Nabihah";
-        p.lname = "Rashid";
-        p.dob = dob;
+        Patient p = new Patient("10/7/2001 Nabihah Rashid");
         String res = p.toString();
         System.out.println(res);
     }
