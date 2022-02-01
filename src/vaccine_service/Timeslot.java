@@ -5,9 +5,9 @@ public class Timeslot implements Comparable<Timeslot> {
     private Time time;
 
     public Timeslot(String timeslot) {
-        String[] split = timeslot.split(", ");
-        this.date = new Date(split[0]);
-        this.time = new Time(split[1]);
+        String[] split = timeslot.split(" ");
+        this.date = new Date(split[2]);
+        this.time = new Time(split[3]);
         System.out.println(time);
     }
 

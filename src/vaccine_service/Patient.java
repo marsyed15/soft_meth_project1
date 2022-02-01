@@ -7,9 +7,9 @@ public class Patient implements Comparable<Patient> {
 
     public Patient(String patient) {
         String[] split = patient.split(" ");
-        this.dob = new Date(split[0]);
-        this.fname = split[1];
-        this.lname = split[2];
+        this.dob = new Date(split[1]);
+        this.fname = split[2];
+        this.lname = split[3];
     }
 
     public String getFname() { return this.fname; }
@@ -26,10 +26,8 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString() {
-        //does it have to be in a specific order?
-        String patient = this.fname + ' ' + this.lname + ' ' + this.dob.getMonth()
-                + '/' + this.dob.getDay() + '/' + this.dob.getYear() + ' ';
-        return patient;
+        return this.fname + " " + this.lname + ", DOB: " + this.dob.getMonth()
+                + "/" + this.dob.getDay() + "/" + this.dob.getYear();
     }
 
     @Override
