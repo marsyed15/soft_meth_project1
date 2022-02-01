@@ -12,9 +12,11 @@ public class Schedule {
 
     }
     public boolean add(Appointment appt) {
+
         return true;
     }
     public boolean remove(Appointment appt) {
+
         return true;
     }
     //print all the appointments in current order

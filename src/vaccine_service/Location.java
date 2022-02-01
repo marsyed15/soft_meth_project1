@@ -11,7 +11,7 @@ public enum Location {
 
     private final String zipCode;
     private final String cityName;
-    
+
     Location(String zipCode, String cityName) {
         this.zipCode = zipCode;
         this.cityName = cityName;
