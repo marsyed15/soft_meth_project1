@@ -50,6 +50,15 @@ public class Timeslot implements Comparable<Timeslot> {
 
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Timeslot) {
+            Timeslot timeslot = (Timeslot) obj;
+            return timeslot.time.equals(this.time) && timeslot.date.equals(this.date);
+        }
+        return false;
+    }
     //testbed
     public static void main (String[]args){
         Timeslot slot = new Timeslot("02/15/2001, 9:46");

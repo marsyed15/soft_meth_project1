@@ -26,8 +26,7 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString() {
-        return this.fname + " " + this.lname + ", DOB: " + this.dob.getMonth()
-                + "/" + this.dob.getDay() + "/" + this.dob.getYear();
+        return this.fname + " " + this.lname + ", DOB: " + this.dob.toString();
     }
 
     @Override
@@ -47,6 +46,16 @@ public class Patient implements Comparable<Patient> {
         stringCompare = this.lname.compareTo(patient.lname);
         if(stringCompare < 0) return -1;
         else return 1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Patient) {
+            Patient patient = (Patient) obj;
+            return patient.lname.equals(this.lname) && patient.fname.equals(this.fname)
+                    && patient.dob.equals(this.dob);
+        }
+        return false;
     }
 
     public static void main(String[] args) {

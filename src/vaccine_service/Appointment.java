@@ -38,9 +38,13 @@ public class Appointment {
 
     @Override
     public boolean equals(Object obj) {
-//        return this.patient.compareTo(obj.patient) == 0
-//                && this.slot.compareTo(obj) == 0 && this.location.compareTo(obj.location) == 0;
-        return true;
+        if (obj instanceof Appointment) {
+            Appointment appointment = (Appointment) obj;
+            // define equals class for Location class (?)
+            return appointment.patient.equals(this.patient) && appointment.slot.equals(this.slot)
+                    && appointment.location.equals(this.location);
+        }
+        return false;
     }
 
     @Override

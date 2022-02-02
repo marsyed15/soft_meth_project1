@@ -50,6 +50,14 @@ public class Time implements Comparable<Time> {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Time) {
+            Time time = (Time) obj;
+            return time.hour == this.hour && time.minute == this.minute;
+        }
+        return false;
+    }
     //testbed
     public static void main(String[] args) {
         Time time = new Time("24:05");

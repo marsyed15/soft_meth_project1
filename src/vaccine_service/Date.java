@@ -6,7 +6,6 @@ public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
-    //should I define these here?
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUARTERCENTENNIAL = 400;
@@ -111,15 +110,24 @@ public class Date implements Comparable<Date> {
                 return -1;
             else if(this.month > date.month)
                 return 1;
-            else {
-                if(this.day < date.day)
-                    return -1;
-                else if (this.day > date.day)
-                    return 1;
-                else
-                    return 0;
-            }
+            else
+                return Integer.compare(this.day, date.day);
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.month + "/" + this.day + "/" + this.year + ' ';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Date) {
+            Date date = (Date) obj;
+            return date.day == this.day && date.month == this.month &&
+                    date.year == this.year;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
