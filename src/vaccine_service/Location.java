@@ -16,4 +16,12 @@ public enum Location {
         this.zipCode = zipCode;
         this.cityName = cityName;
     }
+
+    public String getCityName() {
+        return this.cityName;
+    }
+
+    public String getZipCode() {
+        return this.zipCode;
+    }
 }

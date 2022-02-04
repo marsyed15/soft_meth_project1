@@ -7,9 +7,9 @@ public class Patient implements Comparable<Patient> {
 
     public Patient(String patient) {
         String[] split = patient.split(" ");
-        this.dob = new Date(split[1]);
-        this.fname = split[2];
-        this.lname = split[3];
+        this.dob = new Date(split[0]);
+        this.fname = split[1];
+        this.lname = split[2];
     }
 
     public String getFname() { return this.fname; }
