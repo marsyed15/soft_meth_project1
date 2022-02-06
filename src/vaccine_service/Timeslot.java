@@ -8,7 +8,6 @@ public class Timeslot implements Comparable<Timeslot> {
         String[] split = timeslot.split(" ");
         this.date = new Date(split[0]);
         this.time = new Time(split[1]);
-        System.out.println(time);
     }
 
     public Date getDate() {

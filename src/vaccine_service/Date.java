@@ -117,7 +117,7 @@ public class Date implements Comparable<Date> {
 
     @Override
     public String toString() {
-        return this.month + "/" + this.day + "/" + this.year + ' ';
+        return this.month + "/" + this.day + "/" + this.year;
     }
 
     @Override

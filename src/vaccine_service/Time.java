@@ -8,7 +8,6 @@ public class Time implements Comparable<Time> {
         String[] split = time.split(":");
         this.hour = Integer.parseInt(split[0]);
         this.minute = Integer.parseInt(split[1]);
-        System.out.println("hour is " + this.hour + " minute is " + this.minute);
     }
 
     public int getMinute() {

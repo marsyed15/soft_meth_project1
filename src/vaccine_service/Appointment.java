@@ -1,7 +1,5 @@
 package vaccine_service;
 
-import java.util.Locale;
-
 public class Appointment {
     private Patient patient;
     private Timeslot slot;
@@ -31,7 +29,7 @@ public class Appointment {
                 this.location = Location.UNION;
                 break;
             default:
-                //print error message
+                //send back error message
         }
 
     }
@@ -73,11 +71,14 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return this.patient.toString() + ", " + "Appointment Detail: " + this.slot.toString() + " " + location;
+        return this.patient.toString() + ", " + "Appointment Detail: " + this.slot.toString() + ", " +
+                location.getCityName() + " " + location.getZipCode() + ", " + location;
     }
 
     public static void main(String[] args) {
         Appointment appt = new Appointment("Jane Doe DOB: 1/19/2000 Appointment detail: 12/1/2022 9:45 Union");
+        Appointment appt2 = new Appointment("Jane Doe DOB: 1/19/2001 Appointment detail: 12/1/2022 9:45 Union");
+        System.out.println(appt.equals(appt2));
         System.out.println(appt.toString());
     }
 
