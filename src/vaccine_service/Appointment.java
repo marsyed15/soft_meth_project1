@@ -7,9 +7,6 @@ public class Appointment {
 
     public Appointment(String appt) {
         String[] split = appt.split(" ");
-//        for(int i = 0; i <split.length; i++){
-//            System.out.println(split[i]);
-//        }
         this.patient = new Patient(split[3] + " " + split[0] + " " + split[1]);
         this.slot = new Timeslot(split[6] + " " + split[7]);
         switch(split[8].toLowerCase()){
