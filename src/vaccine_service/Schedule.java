@@ -33,6 +33,10 @@ public class Schedule {
     }
 
     public boolean add(Appointment appt) {
+        //if appointment already booked
+        if (find(appt) != NOT_FOUND){
+            return false;
+        }
         if(numAppts >= this.appointments.length){
             grow();
             this.appointments[numAppts] = appt;
@@ -46,6 +50,7 @@ public class Schedule {
     }
 
     public boolean remove(Appointment appt) {
+        //need to fix so that method is able to also remove all appointments for a patient
         int shiftLeftIndex = 0;
         for (int i = 0; i < this.numAppts; i++){
             if(this.appointments[i].equals(appt)){

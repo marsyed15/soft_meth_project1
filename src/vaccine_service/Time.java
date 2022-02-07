@@ -27,7 +27,7 @@ public class Time implements Comparable<Time> {
     }
 
     public boolean isValid() {
-        return this.hour > 0 && this.hour <= 24 && this.minute >= 0 && this.minute <= 59;
+        return this.hour >=9 && this.hour <= 16 && this.minute >= 0 && (this.minute % 15 == 0);
     }
 
     @Override
