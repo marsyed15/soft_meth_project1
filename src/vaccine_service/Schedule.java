@@ -68,7 +68,7 @@ public class Schedule {
     //print all the appointments in current order
     public void print() {
         for(int i = 0; i < numAppts; i++){
-            System.out.println(appointments[i]);
+            System.out.println(appointments[i].toString());
         }
 
     }
@@ -76,9 +76,22 @@ public class Schedule {
     //sort by zip codes and print
     public void printByZip() {
 
+
     }
     //sort by patient and print
     public void printByPatient() {
+        for (int i = 1; i < numAppts; i++) {
+            Appointment appt = appointments[i];
+            int j = i - 1;
+            while (j >= 0 && appointments[j].getPatient().compareTo(appt.getPatient()) == -1) {
+                appointments[j + 1] = appointments[j];
+                j--;
+            }
+            appointments[j + 1] = appt;
+        }
+        print();
+
 
     }
+
 }
