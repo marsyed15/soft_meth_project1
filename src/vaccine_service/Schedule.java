@@ -72,7 +72,7 @@ public class Schedule {
         }
 
     }
-    
+
     //sort by zip codes and print
     public void printByZip() {
 
