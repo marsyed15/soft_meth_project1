@@ -1,5 +1,7 @@
 package vaccine_service;
 
+import java.util.Locale;
+
 public enum Location {
     // You must use an enum class to define the 5 locations available for vaccination appointments. Use the
     //county names as the constant names and define the zip codes and city names as the properties accordingly.
@@ -20,8 +22,16 @@ public enum Location {
     public String getCityName() {
         return this.cityName;
     }
-
     public String getZipCode() {
         return this.zipCode;
+    }
+
+    public static Boolean locationExists(String countyName) {
+        Location[] locations = Location.values();
+        for(Location location: locations) {
+            if(locations.equals(countyName.toUpperCase()) == true)
+                return true;
+        }
+        return false;
     }
 }

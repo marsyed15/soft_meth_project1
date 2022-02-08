@@ -25,8 +25,6 @@ public class Appointment {
             case("union"):
                 this.location = Location.UNION;
                 break;
-            default:
-                //send back error message
         }
 
     }

@@ -77,11 +77,19 @@ public class Schedule {
         }
 
     }
-
     //sort by zip codes and print
     public void printByZip() {
-
-
+        for (int i = 1; i < numAppts; i++) {
+            Appointment appt = appointments[i];
+            int j = i - 1;
+            while (j >= 0 && appointments[j].getLocation().getZipCode()
+                    .compareTo(appt.getLocation().getZipCode()) == -1) {
+                appointments[j + 1] = appointments[j];
+                j--;
+            }
+            appointments[j + 1] = appt;
+        }
+        print();
     }
     //sort by patient and print
     public void printByPatient() {
@@ -95,8 +103,5 @@ public class Schedule {
             appointments[j + 1] = appt;
         }
         print();
-
-
     }
-
 }
