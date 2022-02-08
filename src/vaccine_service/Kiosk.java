@@ -36,16 +36,19 @@ public class Kiosk {
         }
         else if(schedule.add(currAppt) == false)
             System.out.println("Same appointment exists in the schedule.");
+        //add method that is variation of schedule.find
         else if( )
             System.out.println("Time slot has been taken at this location.");
         else if(Location.locationExists(split[split.length - 1]) == false)
             System.out.println("Invalid location!");
+        //add method that is variation of schedule.find
         else if( )
             System.out.println("Same patient cannot book an appointment with the same date.");
         else
             System.out.println("Appointment booked and added to the schedule.");
     }
 
+    //make loop to remove all patient's appts
     private void cancelAll(String input){
         if(schedule.remove(new Appointment(input.substring(2)))){
             System.out.println("Appointment cancelled.");
