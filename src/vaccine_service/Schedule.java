@@ -11,6 +11,9 @@ public class Schedule {
         this.numAppts = 0;
 
     }
+    public Appointment[] getAppointments() { return  this.appointments; }
+    public int getNumAppts() {return this.numAppts; }
+
     //return the index, or NOT_FOUND
     private int find(Appointment appt) {
         for (int i = 0; i < this.numAppts; i++){
@@ -31,7 +34,7 @@ public class Schedule {
         }
         this.appointments = newAppointmentsArray;
     }
-
+    //use setter here?
     public boolean add(Appointment appt) {
         //if appointment already booked
         if (find(appt) != NOT_FOUND){
@@ -50,7 +53,6 @@ public class Schedule {
     }
 
     public boolean remove(Appointment appt) {
-        //need to fix so that method is able to also remove all appointments for a patient
         int shiftLeftIndex = 0;
         for (int i = 0; i < this.numAppts; i++){
             if(this.appointments[i].equals(appt)){
@@ -75,7 +77,6 @@ public class Schedule {
         for(int i = 0; i < numAppts; i++){
             System.out.println(appointments[i].toString());
         }
-
     }
     //sort by zip codes and print
     public void printByZip() {
