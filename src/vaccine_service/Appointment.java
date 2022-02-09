@@ -26,7 +26,6 @@ public class Appointment {
                 this.location = Location.UNION;
                 break;
         }
-
     }
 
     public Location getLocation() {

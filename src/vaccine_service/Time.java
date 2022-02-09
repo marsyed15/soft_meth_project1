@@ -4,32 +4,30 @@ public class Time implements Comparable<Time> {
     private int hour;
     private int minute;
 
+    /**
+     creates an instance of Time, given a string in hh:mm format.
+     @param time String in hh:mm format
+     */
     public Time(String time) {
         String[] split = time.split(":");
         this.hour = Integer.parseInt(split[0]);
         this.minute = Integer.parseInt(split[1]);
     }
 
-    public int getMinute() {
-        return this.minute;
+    /**
+     checks if time falls within 9:00 to 16:45 with a 15 minute interval
+     @return true if time falls within 9:00 to 16:45 range with 15 minute interval
+     and false otherwise
+     */
+    public boolean isValid() { //MAGIC NUMBERS
+        return this.hour >=9 && this.hour <= 16 && this.minute >= 0 &&
+                this.minute <= 45 && (this.minute % 15 == 0);
     }
 
-    public int getHour() {
-        return this.hour;
-    }
-
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
-
-    public boolean isValid() {
-        return this.hour >=9 && this.hour <= 16 && this.minute >= 0 && (this.minute % 15 == 0);
-    }
-
+    /**
+     
+     @return
+     */
     @Override
     public String toString() {
         if (this.minute < 10) {

@@ -34,7 +34,7 @@ public class Schedule {
         }
         this.appointments = newAppointmentsArray;
     }
-    //use setter here?
+
     public boolean add(Appointment appt) {
         //if appointment already booked
         if (find(appt) != NOT_FOUND){

@@ -4,33 +4,48 @@ public class Timeslot implements Comparable<Timeslot> {
     private Date date;
     private Time time;
 
+    /**
+     Creates an instance of Timeslot with the specified timeslot
+     @param timeslot A string with date in mm/dd/yyyy format followed by time in
+     hh:mm format
+     */
     public Timeslot(String timeslot) {
         String[] split = timeslot.split(" ");
         this.date = new Date(split[0]);
         this.time = new Time(split[1]);
     }
-
+    /**
+     Gets the date from timeslot
+     @return A date object representing the date in the timeslot
+     */
     public Date getDate() {
         return this.date;
     }
-
+    /**
+     Gets the time from timeslot
+     @return A time object representing the time in the timeslot
+     */
     public Time getTime() {
         return this.time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
+    /**
+     Overrides toString method.
+     @return Date as a string in mm/dd/yyyy form
+     */
     @Override
     public String toString() {
-        return "" + this.date.getMonth() + "/" + this.date.getDay() + "/" + this.date.getYear() + ", " + this.time;
+        return "" + this.date.getMonth() + "/" + this.date.getDay() + "/" +
+                this.date.getYear() + ", " + this.time;
     }
 
+    /**
+     Overrides compareTo method. compares this timeslot with specified timeslot
+     @param slot an instance of Timeslot
+     @return 0 if this and specified timeslot are equal, -1 if this timeslot is
+     less than specified timeslot, and 1 if this time slot is greater than
+     specified timeslot
+     */
     @Override
     public int compareTo(Timeslot slot) {
         if (this.date.compareTo(slot.date) == 1) {
@@ -50,6 +65,11 @@ public class Timeslot implements Comparable<Timeslot> {
         }
     }
 
+    /**
+     Overrides equals method.
+     @param obj an object
+     @return true if both objects of type timeslot are equal. false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Timeslot) {
