@@ -6,14 +6,31 @@ public class Schedule {
     private int numAppts;
     public static final int NOT_FOUND = -1;
 
+    /**
+     Creates an instance of Schedule
+     */
     public Schedule() {
         this.appointments = new Appointment[4];
         this.numAppts = 0;
-
     }
+
+    /**
+     Gets the appointments array from schedule
+     @return An array object representing the appointment's array in the Schedule object
+     */
     public Appointment[] getAppointments() { return  this.appointments; }
+
+    /**
+     Gets the numAppts from Schedule
+     @return An int representing the number of appointments in the schedule object
+     */
     public int getNumAppts() {return this.numAppts; }
 
+    /**
+    Checks if given appointment exists in array
+     @param appt an instance of Appointment
+     @return index of appointment in array if found, or NOT_FOUND otherwise
+     */
     //return the index, or NOT_FOUND
     private int find(Appointment appt) {
         for (int i = 0; i < this.numAppts; i++){
@@ -24,7 +41,9 @@ public class Schedule {
         return NOT_FOUND;
     }
 
-    //increase the capacity of the container by 4
+    /**
+     Increases capacity of appointment array by 4
+     */
     private void grow() {
         int newSize = this.appointments.length + 4;
         Appointment newAppointmentsArray[] = new Appointment[newSize];
@@ -35,6 +54,11 @@ public class Schedule {
         this.appointments = newAppointmentsArray;
     }
 
+    /**
+     Adds given appointment exists to array
+     @param appt an instance of Appointment
+     @return true if appointment successfully added into array, false otherwise
+     */
     public boolean add(Appointment appt) {
         //if appointment already booked
         if (find(appt) != NOT_FOUND){
@@ -52,6 +76,11 @@ public class Schedule {
         return true;
     }
 
+    /**
+     Removes given appointment exists from array
+     @param appt an instance of Appointment
+     @return true if appointment successfully removed from array, false otherwise.
+     */
     public boolean remove(Appointment appt) {
         int shiftLeftIndex = 0;
         for (int i = 0; i < this.numAppts; i++){
@@ -72,13 +101,17 @@ public class Schedule {
         return true;
     }
 
-    //print all the appointments in current order
+    /**
+     Prints all appointments in appointments' array
+     */
     public void print() {
         for(int i = 0; i < numAppts; i++){
             System.out.println(appointments[i].toString());
         }
     }
-    //sort by zip codes and print
+    /**
+     Prints all appointments in appointments' array by zipCode
+     */
     public void printByZip() {
         for (int i = 1; i < numAppts; i++) {
             Appointment appt = appointments[i];
@@ -92,7 +125,9 @@ public class Schedule {
         }
         print();
     }
-    //sort by patient and print
+    /**
+     Prints all appointments in appointments' array by PatientName
+     */
     public void printByPatient() {
         for (int i = 1; i < numAppts; i++) {
             Appointment appt = appointments[i];

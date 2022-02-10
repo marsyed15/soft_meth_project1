@@ -5,6 +5,11 @@ public class Appointment {
     private Timeslot slot;
     private Location location;
 
+    /**
+     Creates an instance of Appointment with given String
+     @param appt A string with appointment in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
+     followed by "hh/mm/yyy mm:hh location"
+     */
     public Appointment(String appt) {
         String[] split = appt.split(" ");
         this.patient = new Patient(split[0] + " " + split[1] + " " + split[2]);
@@ -28,30 +33,35 @@ public class Appointment {
         }
     }
 
+    /**
+     Gets the Location from Appointment
+     @return A location object representing the location in the appointment obj
+     */
     public Location getLocation() {
         return this.location;
     }
 
+    /**
+     Gets the Patient from Appointment
+     @return A Patient object representing the Patient in the appointment obj
+     */
     public Patient getPatient() {
         return this.patient;
     }
 
+    /**
+     Gets the Timeslot from Appointment
+     @return A timeslot object representing the timeslot in the appointment object
+     */
     public Timeslot getSlot() {
         return this.slot;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public void setSlot(Timeslot slot) {
-        this.slot = slot;
-    }
-
+    /**
+     Overrides equals method.
+     @param obj an object
+     @return true if both objects of type appointment are equal. false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Appointment) {
@@ -63,6 +73,11 @@ public class Appointment {
         return false;
     }
 
+    /**
+     Overrides toString method.
+     @return Appointment as a string in "firstName lastName hh/mm/yyyy, Appointment Detail: hh/mm/yyy, hh:mm,
+     locationCityName locationZipCode, location" format
+     */
     @Override
     public String toString() {
         return this.patient.toString() + ", " + "Appointment Detail: " + this.slot.toString() + ", " +

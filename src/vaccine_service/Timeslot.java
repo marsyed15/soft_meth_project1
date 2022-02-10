@@ -31,7 +31,7 @@ public class Timeslot implements Comparable<Timeslot> {
 
     /**
      Overrides toString method.
-     @return Date as a string in mm/dd/yyyy form
+     @return Date as a string in mm/dd/yyyy format
      */
     @Override
     public String toString() {

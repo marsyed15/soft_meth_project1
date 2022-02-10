@@ -5,6 +5,10 @@ public class Patient implements Comparable<Patient> {
     private String lname;
     private Date dob;
 
+    /**
+     Creates an instance of Patient with given String
+     @param patient A string with patient in mm/dd/yyyy firstName lastName format
+     */
     public Patient(String patient) {
         String[] split = patient.split(" ");
         this.dob = new Date(split[0]);
@@ -16,19 +20,28 @@ public class Patient implements Comparable<Patient> {
 
     public String getLname() { return this.lname; }
 
+    /**
+     Gets the DOB from patient
+     @return A date object representing the DOB in the patient object
+     */
     public Date getDob() { return this.dob; }
 
-    public void setFname(String fname) { this.fname = fname; }
-
-    public void setLname(String lname) { this.lname = lname; }
-
-    public void setDob(Date dob) { this.dob = dob; }
-
+    /**
+     Overrides toString method.
+     @return Patient as a string in firstName lastName, DOB: hh/mm/yyy format
+     */
     @Override
     public String toString() {
         return this.fname + " " + this.lname + ", DOB: " + this.dob.toString();
     }
 
+    /**
+     Overrides compareTo method. compares this patient with specified patient
+     @param patient an instance of Patient
+     @return 0 if this and specified patient are equal, -1 if this patient is
+     less than specified patient, and 1 if this patient is greater than
+     specified patient
+     */
     @Override
     public int compareTo(Patient patient) {
         int stringCompare = 0;
@@ -48,6 +61,11 @@ public class Patient implements Comparable<Patient> {
         else return 1;
     }
 
+    /**
+     Overrides equals method.
+     @param obj an object
+     @return true if both objects of type patient are equal. false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Patient) {

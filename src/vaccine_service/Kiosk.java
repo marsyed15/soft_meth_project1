@@ -16,6 +16,11 @@ public class Kiosk {
 
     Schedule schedule = new Schedule();
 
+    /**
+     Checks if given appointment's timeslot is already taken
+     @param appt an instance of Appointment
+     @return true if appointment's timeslot is taken, false otherwise
+     */
     private Boolean slotAlreadyBooked(Appointment appt) {
         Timeslot timeslot = appt.getSlot();
         Location location = appt.getLocation();
@@ -27,6 +32,11 @@ public class Kiosk {
         return false;
     }
 
+    /**
+     Checks if given appointment already exists
+     @param appt an instance of Appointment
+     @return true if appointment already exists, false otherwise
+     */
     private Boolean apptForPatientExists(Appointment appt){
         Patient name = appt.getPatient();
         Date apptDate = appt.getSlot().getDate();
@@ -40,6 +50,11 @@ public class Kiosk {
         return false;
     }
 
+    /**
+    Adds appointment to schedule if possible, otherwise prints out error message
+     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
+     followed by "hh/mm/yyy mm:hh location"
+     */
     private void book(String input){
         Date todaysDate = new Date();
         Appointment currAppt = new Appointment(input.substring(2));
@@ -74,6 +89,11 @@ public class Kiosk {
             System.out.println("Appointment booked and added to the schedule.");
     }
 
+    /**
+    Removes all appointments for a certain patient from schedule
+     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
+     followed by "hh/mm/yyy mm:hh location"
+     */
     private void cancelAll(String input){
         Patient cancelPatient = new Appointment(input.substring(2)).getPatient();
         for(int i = 0; i < schedule.getNumAppts(); i++) {
@@ -81,10 +101,15 @@ public class Kiosk {
                 schedule.remove(schedule.getAppointments()[i]);
             }
         }
-        System.out.println("All appoitnments for " + cancelPatient.toString() +
+        System.out.println("All appointments for " + cancelPatient.toString() +
                 " have been cancelled");
     }
 
+    /**
+    Removes a single appointment from schedule, prints error message if not possible
+     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
+     followed by "hh/mm/yyy mm:hh location"
+     */
     private void cancel(String input){
         if(schedule.remove(new Appointment(input.substring(2)))){
             System.out.println("Appointment cancelled.");
@@ -94,24 +119,37 @@ public class Kiosk {
         }
     }
 
+    /**
+     Prints all appointments currently in schedule
+     */
     private void print(){
         System.out.println("*list of appointments in the schedule*");
         schedule.print();
         System.out.println("*end of schedule*");
     }
 
+    /**
+     Prints all appointments currently in schedule sorted by zipcode
+     */
     private void printZip(){
         System.out.println("*list of appointments by zip and time slot.");
         schedule.printByZip();
         System.out.println("*end of schedule*");
     }
 
+    /**
+     Prints all appointments currently in schedule sorted by patients' names.
+     */
     private void printPatient(){
         System.out.println("*list of appointments by patient");
         schedule.printByPatient();
         System.out.println("*end of schedule*");
     }
 
+    /**
+     Reads in user inputs continously, and respectively books, cancels, and prints appointments
+     until the command Q is read
+     */
     public void run() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Kiosk running. Ready to process transactions");

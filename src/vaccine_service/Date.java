@@ -19,14 +19,20 @@ public class Date implements Comparable<Date> {
     public static final int OCTOBER = 10;
     public static final int DECEMBER = 12;
 
-    //take “mm/dd/yyyy” and create a Date object
+    /**
+     Creates an instance of Date with given String
+     @param date A string in mm/dd/yyyy format
+     */
     public Date(String date) {
         String[] dateSplit = date.split("/");
         this.month = Integer.parseInt(dateSplit[0]);
         this.day = Integer.parseInt(dateSplit[1]);
         this.year = Integer.parseInt(dateSplit[2]);
     }
-    //create an object with today’s date (see Calendar class)
+
+    /**
+     Creates an instance of Date for today's date
+     */
     public Date() {
         Calendar todayDate = Calendar.getInstance();
         this.month = todayDate.get(Calendar.MONTH) + 1; //adding 1 b/c the months in the calender class start at 0
@@ -34,30 +40,35 @@ public class Date implements Comparable<Date> {
         this.year = todayDate.get(Calendar.YEAR);
     }
 
+    /**
+     Gets the day from Date
+     @return int representing the day in the Date
+     */
     public int getDay() {
         return this.day;
     }
 
+    /**
+     Gets the month from Date
+     @return int representing the month in the Date
+     */
     public int getMonth() {
         return this.month;
     }
 
+    /**
+     Gets the year from Date
+     @return int representing the year in the Date
+     */
     public int getYear() {
         return this.year;
     }
 
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
+    /**
+     Checks if given year is a leap year or not
+     @param year, an integer
+     @return true if given year is leap year, false otherwise.
+     */
     private Boolean isLeapYear(int year) {
         if(year % QUADRENNIAL == 0) {
             if(year % CENTENNIAL == 0) {
@@ -71,6 +82,11 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    /**
+     Checks if given month is a valid month from range 1-12
+     @param month, an integer
+     @return true if given month is valid and falls within range 1-12, false otherwise.
+     */
     private Boolean shouldHave31Days(int month) {
         if(month == JANUARY || month == MARCH || month == MAY || month == JULY
                 || month == AUGUST || month == OCTOBER || month == DECEMBER)
@@ -78,6 +94,10 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    /**
+     Checks if Date object is a valid date
+     @return true if given Date object is valid, false otherwise.
+     */
     public Boolean isValid() {
         Boolean leapYear = isLeapYear(this.year);
         Boolean ThirtyOneDays = shouldHave31Days(this.month);
@@ -99,6 +119,13 @@ public class Date implements Comparable<Date> {
         return true;
     }
 
+    /**
+     Overrides compareTo method. compares this Date with specified Date
+     @param date an instance of Date
+     @return 0 if this and specified Date are equal, -1 if this Date is
+     less than specified Date, and 1 if this Date is greater than
+     specified Date
+     */
     @Override
     public int compareTo(Date date) {
         if(this.year < date.year)
@@ -115,11 +142,20 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    /**
+     Overrides toString method.
+     @return Date as a string in mm/dd/yyyy format
+     */
     @Override
     public String toString() {
         return this.month + "/" + this.day + "/" + this.year;
     }
 
+    /**
+     Overrides equals method.
+     @param obj an object
+     @return true if both objects of type Date are equal. false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Date) {

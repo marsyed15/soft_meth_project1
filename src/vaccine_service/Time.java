@@ -25,8 +25,8 @@ public class Time implements Comparable<Time> {
     }
 
     /**
-     
-     @return
+     Overrides toString method
+     @return time as a String in hh:mm format
      */
     @Override
     public String toString() {
@@ -36,6 +36,13 @@ public class Time implements Comparable<Time> {
         return this.hour + ":" + this.minute;
     }
 
+    /**
+     Overrides compareTo method. compares this timeslot with specified timeslot
+     @param time an instance of Time
+     @return 0 if this and specified time are equal, -1 if this time is
+     less than specified time, and 1 if this time is greater than
+     specified time
+     */
     @Override
     public int compareTo(Time time) {
         if (this.hour > time.hour) {
@@ -46,7 +53,11 @@ public class Time implements Comparable<Time> {
             return Integer.compare(this.minute, time.minute);
         }
     }
-
+    /**
+     Overrides equals method.
+     @param obj an object
+     @return true if both objects of type Time are equal. false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Time) {
