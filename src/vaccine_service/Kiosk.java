@@ -33,18 +33,16 @@ public class Kiosk {
     }
 
     /**
-     Checks if given appointment already exists
+     Checks if given appointment already exists for patient for same day
      @param appt an instance of Appointment
      @return true if appointment already exists, false otherwise
      */
     private Boolean apptForPatientExists(Appointment appt){
         Patient name = appt.getPatient();
         Date apptDate = appt.getSlot().getDate();
-        Location location = appt.getLocation();
         for (int i = 0; i < schedule.getNumAppts(); i++){
             if(schedule.getAppointments()[i].getPatient().equals(name) && schedule
-                    .getAppointments()[i].getSlot().getDate().equals(apptDate) &&
-                    schedule.getAppointments()[i].getLocation() != location)
+                    .getAppointments()[i].getSlot().getDate().equals(apptDate))
                 return true;
         }
         return false;

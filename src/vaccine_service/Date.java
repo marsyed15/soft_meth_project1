@@ -98,7 +98,7 @@ public class Date implements Comparable<Date> {
      Checks if Date object is a valid date
      @return true if given Date object is valid, false otherwise.
      */
-    public Boolean isValid() {
+    public Boolean isValid() { //MAGIC NUMBERS
         Boolean leapYear = isLeapYear(this.year);
         Boolean ThirtyOneDays = shouldHave31Days(this.month);
 
@@ -114,6 +114,10 @@ public class Date implements Comparable<Date> {
         if(this.day > 30) {
             if(this.day == 31 && ThirtyOneDays == true)
                 return true;
+            return false;
+        }
+
+        if(this.year > 2022){
             return false;
         }
         return true;
