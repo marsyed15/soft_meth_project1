@@ -1,6 +1,11 @@
 package vaccine_service;
 
 public class Time implements Comparable<Time> {
+    public static final int minHour = 9;
+    public static final int maxHour = 16;
+    public static final int minMinute = 0;
+    public static final int maxMinute = 45;
+    public static final int intervalTime = 15;
     private int hour;
     private int minute;
 
@@ -19,9 +24,9 @@ public class Time implements Comparable<Time> {
      @return true if time falls within 9:00 to 16:45 range with 15 minute interval
      and false otherwise
      */
-    public boolean isValid() { //MAGIC NUMBERS
-        return this.hour >=9 && this.hour <= 16 && this.minute >= 0 &&
-                this.minute <= 45 && (this.minute % 15 == 0);
+    public boolean isValid() { 
+        return this.hour >= minHour && this.hour <= maxHour && this.minute >= minMinute &&
+                this.minute <= maxMinute && (this.minute % intervalTime == 0);
     }
 
     /**
