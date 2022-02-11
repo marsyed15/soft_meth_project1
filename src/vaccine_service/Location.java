@@ -44,8 +44,9 @@ public enum Location {
      */
     public static Boolean locationExists(String countyName) {
         Location[] locations = Location.values();
+        countyName = countyName.toUpperCase();
         for(Location location: locations) {
-            if(locations.equals(countyName.toUpperCase()) == true)
+            if(location.toString().equals(countyName))
                 return true;
         }
         return false;

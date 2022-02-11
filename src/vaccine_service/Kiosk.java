@@ -66,12 +66,16 @@ public class Kiosk {
         else if(currAppt.getPatient().getDob().compareTo(todaysDate) >= 0)
             System.out.println("Date of birth invalid -> it is a future date.");
 
+        else if(currAppt.getPatient().getDob().isValid() == false)
+            System.out.println("Invalid date of birth!");
+
         else if(currAppt.getSlot().getDate().compareTo(todaysDate) <= 0)
             System.out.println("Appointment date invalid -> must be a future date.");
 
         else if(currAppt.getSlot().getTime().isValid() == false)
             System.out.println("Invalid appointment time! Must enter a time " +
                     "between 9:00 and 16:45 with a 15-minute interval.");
+
         else if(slotAlreadyBooked(currAppt) == true)
             System.out.println("Time slot has been taken at this location.");
 
