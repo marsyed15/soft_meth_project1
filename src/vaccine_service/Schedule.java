@@ -1,6 +1,14 @@
 package vaccine_service;
 
+/**
+ Represents schedule of vaccine appointments in 5 different counties from 9:15 to
+ 16:45 using an array of objects.
 
+ An appointment can be added, removed, or serached for from the schedule.
+ All appointments can be printed as they are in the array, or sorted by zipCode
+ or patients and then printed.
+ @author maryam, nabihah
+ */
 public class Schedule {
     private Appointment [] appointments;
     private int numAppts;
@@ -16,22 +24,23 @@ public class Schedule {
 
     /**
      Gets the appointments array from schedule
-     @return An array object representing the appointment's array in the Schedule object
+     @return An array object representing the appointment's array in the Schedule
+     object
      */
     public Appointment[] getAppointments() { return  this.appointments; }
 
     /**
      Gets the numAppts from Schedule
-     @return An int representing the number of appointments in the schedule object
+     @return An int representing the number of appointments currently
+     in the schedule object
      */
     public int getNumAppts() {return this.numAppts; }
 
     /**
-    Checks if given appointment exists in array
+    Checks if given appointment exists in array of appointments
      @param appt an instance of Appointment
      @return index of appointment in array if found, or NOT_FOUND otherwise
      */
-    //return the index, or NOT_FOUND
     private int find(Appointment appt) {
         for (int i = 0; i < this.numAppts; i++){
             if(this.appointments[i].equals(appt)){
@@ -40,7 +49,6 @@ public class Schedule {
         }
         return NOT_FOUND;
     }
-
     /**
      Increases capacity of appointment array by 4
      */
@@ -53,7 +61,6 @@ public class Schedule {
         }
         this.appointments = newAppointmentsArray;
     }
-
     /**
      Adds given appointment exists to array
      @param appt an instance of Appointment
@@ -75,9 +82,8 @@ public class Schedule {
         }
         return true;
     }
-
     /**
-     Removes given appointment exists from array
+     Removes given appointment from array
      @param appt an instance of Appointment
      @return true if appointment successfully removed from array, false otherwise.
      */
@@ -100,7 +106,6 @@ public class Schedule {
         this.numAppts--;
         return true;
     }
-
     /**
      Prints all appointments in appointments' array
      */
@@ -110,8 +115,10 @@ public class Schedule {
         }
     }
     /**
-     Prints all appointments in appointments' array by zipCode
+     Prints all appointments in appointments' array sorted by zipCode. If two appts
+     have same zipCode, display the one with the earlier timeslot first
      */
+    //fix this to sort by timeslot
     public void printByZip() {
         for (int i = 1; i < numAppts; i++) {
             Appointment appt = appointments[i];
@@ -126,7 +133,8 @@ public class Schedule {
         print();
     }
     /**
-     Prints all appointments in appointments' array by PatientName
+     Prints all appointments in appointments' array sorted by patients. Sort by
+     patients' last name, then first name, then date of birth.
      */
     public void printByPatient() {
         for (int i = 1; i < numAppts; i++) {

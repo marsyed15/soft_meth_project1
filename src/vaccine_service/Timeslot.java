@@ -1,5 +1,9 @@
 package vaccine_service;
 
+/**
+ Represents a timeslot for vaccine appointment.
+ @author maryam, nabihah
+ */
 public class Timeslot implements Comparable<Timeslot> {
     private Date date;
     private Time time;
@@ -43,8 +47,9 @@ public class Timeslot implements Comparable<Timeslot> {
      Overrides compareTo method. compares this timeslot with specified timeslot
      @param slot an instance of Timeslot
      @return 0 if this and specified timeslot are equal, -1 if this timeslot is
-     less than specified timeslot, and 1 if this time slot is greater than
-     specified timeslot
+     less than specified timeslot (either date or time are less, or both), and 1
+     if this time slot is greater than specified timeslot (either date or time are
+     greater, or both)
      */
     @Override
     public int compareTo(Timeslot slot) {
@@ -61,7 +66,6 @@ public class Timeslot implements Comparable<Timeslot> {
             } else {
                 return -1;
             }
-
         }
     }
 
@@ -80,13 +84,39 @@ public class Timeslot implements Comparable<Timeslot> {
     }
     //testbed
     public static void main (String[]args){
-        Timeslot slot = new Timeslot("02/15/2001, 9:46");
-        System.out.println(slot.toString());
-        Timeslot slot2 = new Timeslot("02/15/2001, 10:50");
+        //testcase 1
+        Timeslot slot = new Timeslot("02/14/2021, 9:40");
+        Timeslot slot2 = new Timeslot("02/14/2023, 8:00");
         System.out.println(slot.compareTo(slot2));
-        System.out.println(slot2.time.isValid());
-
-
-
+        //testcase 2
+        Timeslot slot3 = new Timeslot("01/14/2021, 10:40");
+        Timeslot slot4 = new Timeslot("03/14/2021, 7:00");
+        //testcase 3
+        Timeslot slot5 = new Timeslot("06/10/2020, 10:40");
+        Timeslot slot6 = new Timeslot("06/14/2020, 7:00");
+        //testcase 4
+        Timeslot slot7 = new Timeslot("05/12/2020, 10:50");
+        Timeslot slot8 = new Timeslot("05/12/2019, 12:00");
+        //testcase 5
+        Timeslot slot9 = new Timeslot("04/20/2019, 10:50");
+        Timeslot slot10 = new Timeslot("05/20/2019, 12:00");
+        //testcase 6
+        Timeslot slot11 = new Timeslot("05/20/2019, 10:50");
+        Timeslot slot12 = new Timeslot("05/12/2010, 12:00");
+        //testcase 7
+        Timeslot slot13 = new Timeslot("01/13/2021, 10:50");
+        Timeslot slot14 = new Timeslot("01/13/2021, 10:50");
+        //testcase 8
+        Timeslot slot15 = new Timeslot("12/12/2020, 2:10");
+        Timeslot slot16 = new Timeslot("12/12/2020, 2:01");
+        //testcase 9
+        Timeslot slot17 = new Timeslot("12/12/2020, 3:01");
+        Timeslot slot18 = new Timeslot("12/12/2020, 2:01");
+        //testcase 10
+        Timeslot slot19 = new Timeslot("12/12/2020, 6:21");
+        Timeslot slot20 = new Timeslot("12/12/2020, 7:21");
+        //testcase 11
+        Timeslot slot21 = new Timeslot("12/12/2020, 6:21");
+        Timeslot slot22 = new Timeslot("12/12/2020, 6:40");
     }
 }

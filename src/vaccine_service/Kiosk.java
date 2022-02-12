@@ -2,20 +2,15 @@ package vaccine_service;
 
 import java.util.Scanner;
 
+/**
+ A user interface class to process the transactions entered through the console
+ and output the results to the console. An instance of Kiosk class can process
+ a single transaction, as well as a batch of transactions.
+ */
+
 public class Kiosk {
 
-    //error checks to return error message on:
-    // 1. A date is not a valid calendar date.
-    // 2. The date of birth is today or a future date.
-    // 3. The appointment date is today or a date before today.
-    // 4. The time is not a 15-minute interval and outside of the range of the appointment times of the day.
-    // 5. An appointment with the same patient, timeslot and location is already in the schedule.
-    // 6. The specified timeslot (same date and time) at the specified location has already been taken.
-    // 7. The location with the county name is not a valid location.
-    // 8. The user is booking an appointment with the same patient and date but a different location with an existing appointment.
-
     Schedule schedule = new Schedule();
-
     /**
      Checks if given appointment's timeslot is already taken
      @param appt an instance of Appointment
@@ -31,9 +26,8 @@ public class Kiosk {
         }
         return false;
     }
-
     /**
-     Checks if given appointment already exists for patient for same day
+     Checks if appointment with same patient and date, but different location exists
      @param appt an instance of Appointment
      @return true if appointment already exists, false otherwise
      */
@@ -42,14 +36,14 @@ public class Kiosk {
         Date apptDate = appt.getSlot().getDate();
         for (int i = 0; i < schedule.getNumAppts(); i++){
             if(schedule.getAppointments()[i].getPatient().equals(name) && schedule
-                    .getAppointments()[i].getSlot().getDate().equals(apptDate))
+                    .getAppointments()[i].getSlot().getDate().equals(apptDate) &&
+                    schedule.getAppointments()[i].getLocation() != appt.getLocation())
                 return true;
         }
         return false;
     }
-
     /**
-    Adds appointment to schedule if possible, otherwise prints out error message
+     Adds appointment to schedule if possible, otherwise prints out error message
      @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
      followed by "hh/mm/yyy mm:hh location"
      */
@@ -58,14 +52,15 @@ public class Kiosk {
         Appointment currAppt = new Appointment(input.substring(2));
         String[] split = input.split(" ");
 
-        if(currAppt.getSlot().getDate().isValid() == false)
+        if(currAppt.getPatient().getDob().isValid() == false)
+            System.out.println("Invalid date of birth!");
+
+        else if(currAppt.getSlot().getDate().isValid() == false || currAppt.
+                getSlot().getDate().getYear() > todaysDate.getYear())
             System.out.println("Invalid appointment date!");
 
         else if(currAppt.getPatient().getDob().compareTo(todaysDate) >= 0)
             System.out.println("Date of birth invalid -> it is a future date.");
-
-        else if(currAppt.getPatient().getDob().isValid() == false)
-            System.out.println("Invalid date of birth!");
 
         else if(currAppt.getSlot().getDate().compareTo(todaysDate) <= 0)
             System.out.println("Appointment date invalid -> must be a future date.");
@@ -89,9 +84,8 @@ public class Kiosk {
         else
             System.out.println("Appointment booked and added to the schedule.");
     }
-
     /**
-    Removes all appointments for a certain patient from schedule
+     Removes all appointments for a certain patient from schedule
      @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
      followed by "hh/mm/yyy mm:hh location"
      */
@@ -105,9 +99,8 @@ public class Kiosk {
         System.out.println("All appointments for " + cancelPatient.toString() +
                 " have been cancelled");
     }
-
     /**
-    Removes a single appointment from schedule, prints error message if not possible
+     Removes a single appointment from schedule, prints error message if not possible
      @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
      followed by "hh/mm/yyy mm:hh location"
      */
@@ -119,7 +112,6 @@ public class Kiosk {
             System.out.println("Not cancelled, appointment does not exist.");
         }
     }
-
     /**
      Prints all appointments currently in schedule
      */
@@ -127,29 +119,33 @@ public class Kiosk {
         System.out.println("*list of appointments in the schedule*");
         schedule.print();
         System.out.println("*end of schedule*");
+        System.out.println();
     }
 
     /**
-     Prints all appointments currently in schedule sorted by zipcode
+     Prints all appointments currently in schedule sorted by zipcode. If zipcodes
+     are the same, then sort by timeslot
      */
     private void printZip(){
         System.out.println("*list of appointments by zip and time slot.");
         schedule.printByZip();
         System.out.println("*end of schedule*");
+        System.out.println();
     }
 
     /**
-     Prints all appointments currently in schedule sorted by patients' names.
+     Prints all appointments currently in schedule sorted by patients lastname,
+     then firstname, then date of birth
      */
     private void printPatient(){
         System.out.println("*list of appointments by patient");
         schedule.printByPatient();
-        System.out.println("*end of schedule*");
+        System.out.println("*end of list*");
+        System.out.println();
     }
-
     /**
-     Reads in user inputs continously, and respectively books, cancels, and prints appointments
-     until the command Q is read
+     Reads in user inputs continuously, and respectively books, cancels, and
+     prints appointments until the command Q is read
      */
     public void run() {
         Scanner userInput = new Scanner(System.in);

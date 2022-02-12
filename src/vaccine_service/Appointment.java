@@ -1,5 +1,10 @@
 package vaccine_service;
 
+/**
+ Represents a vaccine appointment with three fields: a patient object, timeslot
+ object, and a location.
+ @author nabihah, maryam
+ */
 public class Appointment {
     private Patient patient;
     private Timeslot slot;
@@ -58,7 +63,8 @@ public class Appointment {
     }
 
     /**
-     Overrides equals method.
+     Overrides equals method. Two appointments are equal if the patient objects,
+     timeslot objects, and locations are equal.
      @param obj an object
      @return true if both objects of type appointment are equal. false otherwise
      */
@@ -83,7 +89,7 @@ public class Appointment {
         return this.patient.toString() + ", " + "Appointment Detail: " + this.slot.toString() + ", " +
                 location.getCityName() + " " + location.getZipCode() + ", " + location;
     }
-
+    //testbed main
     public static void main(String[] args) {
         Appointment appt = new Appointment("8/31/1978 Jane Doe 9/19/2022 9:15 union");
         Appointment appt2 = new Appointment("7/31/1992 Chris Young 2/27/2022 11:15 Morris");

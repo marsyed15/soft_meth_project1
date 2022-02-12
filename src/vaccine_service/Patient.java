@@ -1,5 +1,10 @@
 package vaccine_service;
 
+/**
+ Represents a Patient with three fields: the patient's first name, last name, and
+ date of birth
+ @author nabihah, maryam
+ */
 public class Patient implements Comparable<Patient> {
     private String fname;
     private String lname;
@@ -15,17 +20,11 @@ public class Patient implements Comparable<Patient> {
         this.fname = split[1];
         this.lname = split[2];
     }
-
-    public String getFname() { return this.fname; }
-
-    public String getLname() { return this.lname; }
-
     /**
-     Gets the DOB from patient
+     Gets the DOB of the patient
      @return A date object representing the DOB in the patient object
      */
     public Date getDob() { return this.dob; }
-
     /**
      Overrides toString method.
      @return Patient as a string in firstName lastName, DOB: hh/mm/yyy format
@@ -34,13 +33,12 @@ public class Patient implements Comparable<Patient> {
     public String toString() {
         return this.fname + " " + this.lname + ", DOB: " + this.dob.toString();
     }
-
     /**
      Overrides compareTo method. compares this patient with specified patient
      @param patient an instance of Patient
      @return 0 if this and specified patient are equal, -1 if this patient is
      less than specified patient, and 1 if this patient is greater than
-     specified patient
+     specified patient.
      */
     @Override
     public int compareTo(Patient patient) {
@@ -60,7 +58,6 @@ public class Patient implements Comparable<Patient> {
         if(stringCompare < 0) return -1;
         else return 1;
     }
-
     /**
      Overrides equals method.
      @param obj an object

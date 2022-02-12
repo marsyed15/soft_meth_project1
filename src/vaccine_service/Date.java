@@ -2,10 +2,21 @@ package vaccine_service;
 
 import java.util.Calendar;
 
+/**
+ Represents a calender date with three fields: day, month, and year. Can check if
+ date is a valid calender date.
+ @author nabihah, maryam
+ */
+
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
+    public static final int MINIMUMYEAR = 1900;
+    public static final int DAYSINFEB = 28;
+    public static final int DAYSINLEAPYEARFEB = 29;
+    public static final int DAYSINAMONTH = 30;
+    public static final int DAYSINSOMEMONTHS = 31;
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUARTERCENTENNIAL = 400;
@@ -29,19 +40,19 @@ public class Date implements Comparable<Date> {
         this.day = Integer.parseInt(dateSplit[1]);
         this.year = Integer.parseInt(dateSplit[2]);
     }
-
     /**
      Creates an instance of Date for today's date
      */
     public Date() {
         Calendar todayDate = Calendar.getInstance();
-        this.month = todayDate.get(Calendar.MONTH) + 1; //adding 1 b/c the months in the calender class start at 0
+        //adding 1 b/c the months in the calender class start at 0
+        this.month = todayDate.get(Calendar.MONTH) + 1;
         this.day = todayDate.get(Calendar.DATE);
         this.year = todayDate.get(Calendar.YEAR);
     }
 
     /**
-     Gets the day from Date
+     Gets the day from Date object
      @return int representing the day in the Date
      */
     public int getDay() {
@@ -49,7 +60,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     Gets the month from Date
+     Gets the month from Date object
      @return int representing the month in the Date
      */
     public int getMonth() {
@@ -57,7 +68,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     Gets the year from Date
+     Gets the year from Date object
      @return int representing the year in the Date
      */
     public int getYear() {
@@ -83,9 +94,10 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     Checks if given month is a valid month from range 1-12
+     Checks if given month should have 31 days or not.
      @param month, an integer
-     @return true if given month is valid and falls within range 1-12, false otherwise.
+     @return true if given month is January, March, May, July, August, October,
+     or December and false otherwise
      */
     private Boolean shouldHave31Days(int month) {
         if(month == JANUARY || month == MARCH || month == MAY || month == JULY
@@ -95,7 +107,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     Checks if Date object is a valid date
+     Checks if Date object is a valid date.
      @return true if given Date object is valid, false otherwise.
      */
     public Boolean isValid() { //MAGIC NUMBERS
@@ -105,19 +117,19 @@ public class Date implements Comparable<Date> {
         if(this.month > MONTHS)
             return false;
 
-        if(this.month == FEBRUARY && this.day > 28) {
-            if((this.day == 29 && leapYear == true))
+        if(this.month == FEBRUARY && this.day > DAYSINFEB) {
+            if((this.day == DAYSINLEAPYEARFEB && leapYear == true))
                 return true;
             return false;
         }
 
-        if(this.day > 30) {
-            if(this.day == 31 && ThirtyOneDays == true)
+        if(this.day > DAYSINAMONTH) {
+            if(this.day == DAYSINSOMEMONTHS && ThirtyOneDays == true)
                 return true;
             return false;
         }
 
-        if(this.year > 2022){
+        if(this.year < MINIMUMYEAR){
             return false;
         }
         return true;
@@ -156,7 +168,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     Overrides equals method.
+     Overrides equals method. day, year, and month must be equal for two dates
+     to be equal.
      @param obj an object
      @return true if both objects of type Date are equal. false otherwise
      */
@@ -169,15 +182,26 @@ public class Date implements Comparable<Date> {
         }
         return false;
     }
-
+    //testbed main
     public static void main(String[] args) {
-        Date testDate = new Date("01/29/2022");
-        Date todayDate = new Date();
-        Boolean valid = todayDate.isValid();
-        int compare = todayDate.compareTo(testDate);
-        System.out.printf("Date is %b\n", valid);
-        System.out.printf("Is Today's date valid? %d", compare);
-
+        //testcase1
+        Date testDate = new Date("15/21/2022");
+        System.out.println(testDate.isValid());
+        //testcase2
+        Date testDate1 = new Date("1/41/2013");
+        System.out.println(testDate1.isValid());
+        //testcase3
+        Date testDate2 = new Date("6/31/2021");
+        System.out.println(testDate2.isValid());
+        //testcase4
+        Date testDate3 = new Date("2/29/2018");
+        System.out.println(testDate3.isValid());
+        //testcase5
+        Date testDate4 = new Date("2/31/2020");
+        System.out.println(testDate4.isValid());
+        //testcase6
+        Date testDate5 = new Date("10/7/1899");
+        System.out.println(testDate5.isValid());
     }
 }
 

@@ -1,8 +1,11 @@
 package vaccine_service;
 
+/**
+ Represents locations where vaccine services are being offered. Can check whether
+ location is a valid location (are vaccines being offered there?).
+ @author nabihah, maryam
+ */
 public enum Location {
-    // You must use an enum class to define the 5 locations available for vaccination appointments. Use the
-    //county names as the constant names and define the zip codes and city names as the properties accordingly.
     SOMERSET ("08807", "Bridgewater"),
     MIDDLESEX ("08854", "Piscataway"),
     MERCER ("08542", "Princeton"),
@@ -20,7 +23,6 @@ public enum Location {
         this.zipCode = zipCode;
         this.cityName = cityName;
     }
-
     /**
      Gets cityName from location
      @return A string object representing the cityName in the location object
@@ -36,7 +38,6 @@ public enum Location {
     public String getZipCode() {
         return this.zipCode;
     }
-
     /**
      Checks if given countyName is valid vaccine location
      @param countyName countyName as String object

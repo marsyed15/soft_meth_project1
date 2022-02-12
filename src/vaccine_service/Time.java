@@ -25,8 +25,9 @@ public class Time implements Comparable<Time> {
      and false otherwise
      */
     public boolean isValid() { 
-        return this.hour >= minHour && this.hour <= maxHour && this.minute >= minMinute &&
-                this.minute <= maxMinute && (this.minute % intervalTime == 0);
+        return this.hour >= minHour && this.hour <= maxHour && this.minute >=
+                minMinute && this.minute <= maxMinute &&
+                (this.minute % intervalTime == 0);
     }
 
     /**
@@ -35,18 +36,18 @@ public class Time implements Comparable<Time> {
      */
     @Override
     public String toString() {
-        if (this.minute < 10) {
+        if (this.minute < 10) { //would this be a magic number?
             return this.hour + ":0" + this.minute;
         }
         return this.hour + ":" + this.minute;
     }
 
     /**
-     Overrides compareTo method. compares this timeslot with specified timeslot
+     Overrides compareTo method. compares this time with specified time
      @param time an instance of Time
      @return 0 if this and specified time are equal, -1 if this time is
-     less than specified time, and 1 if this time is greater than
-     specified time
+     less than specified time, and 1 if time is greater than specified time
+     (in terms of minute or hour, or both)
      */
     @Override
     public int compareTo(Time time) {
@@ -77,7 +78,6 @@ public class Time implements Comparable<Time> {
         Time time2 = new Time("11:05");
         System.out.println(time.isValid());
         System.out.println(time.compareTo(time2));
-
     }
 }
 
