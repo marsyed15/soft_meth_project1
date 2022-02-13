@@ -1,5 +1,11 @@
 package vaccine_service;
 
+/**
+ Represents time with two fields: hour and minute.
+ For the purposes of this project, a valid time object falls between 9:00 to
+ 16:45 with 15 minute intervals.
+ @author maryam, nabihah
+ */
 public class Time implements Comparable<Time> {
     public static final int minHour = 9;
     public static final int maxHour = 16;

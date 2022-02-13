@@ -74,7 +74,7 @@ public class Patient implements Comparable<Patient> {
         }
         return false;
     }
-
+    //testbed main
     public static void main(String[] args) {
         Patient p = new Patient("10/7/2001 Nabihah Rashid");
         Patient s = new Patient("02/15/2001 Maryam Syed");
