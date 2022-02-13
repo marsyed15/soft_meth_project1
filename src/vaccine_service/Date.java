@@ -12,7 +12,6 @@ public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
-    public static final int MINIMUM_YEAR = 1900;
     public static final int MAX_DAYS_IN_FEB = 28;
     public static final int MAX_DAYS_IN_LEAP_YEAR_FEB = 29;
     public static final int MAX_DAYS_IN_FOUR_MONTHS = 30;
@@ -129,9 +128,6 @@ public class Date implements Comparable<Date> {
             return false;
         }
 
-        if(this.year < MINIMUM_YEAR) {
-            return false;
-        }
         return true;
     }
 

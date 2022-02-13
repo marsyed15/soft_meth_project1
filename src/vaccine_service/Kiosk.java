@@ -10,8 +10,9 @@ import java.util.Scanner;
  */
 
 public class Kiosk {
-
     Schedule schedule = new Schedule();
+    public static final int MINIMUM_YEAR = 1900;
+
     /**
      Checks if given appointment's timeslot is already taken
      @param appt an instance of Appointment
@@ -55,7 +56,8 @@ public class Kiosk {
         Appointment currAppt = new Appointment(input.substring(2));
         String[] split = input.split(" ");
 
-        if(currAppt.getPatient().getDob().isValid() == false) {
+        if(currAppt.getPatient().getDob().isValid() == false ||
+                currAppt.getPatient().getDob().getYear() < MINIMUM_YEAR) {
             System.out.println("Invalid date of birth!");
         }
         else if(currAppt.getSlot().getDate().isValid() == false || currAppt.
