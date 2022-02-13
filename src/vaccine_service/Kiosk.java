@@ -1,5 +1,6 @@
 package vaccine_service;
 
+import java.time.Period;
 import java.util.Scanner;
 
 /**
@@ -17,11 +18,13 @@ public class Kiosk {
      @return true if appointment's timeslot is taken, false otherwise
      */
     private Boolean slotAlreadyBooked(Appointment appt) {
+        Patient patient = appt.getPatient();
         Timeslot timeslot = appt.getSlot();
         Location location = appt.getLocation();
         for (int i = 0; i < schedule.getNumAppts(); i++){
             if(schedule.getAppointments()[i].getSlot().equals(timeslot) &&
-            schedule.getAppointments()[i].getLocation() == location)
+                    schedule.getAppointments()[i].getLocation() == location &&
+                    schedule.getAppointments()[i].getPatient().compareTo(patient) != 0)
                 return true;
         }
         return false;
@@ -124,6 +127,7 @@ public class Kiosk {
      Prints all appointments currently in schedule
      */
     private void print(){
+        System.out.println();
         System.out.println("*list of appointments in the schedule*");
         schedule.print();
         System.out.println("*end of schedule*");
@@ -135,6 +139,7 @@ public class Kiosk {
      are the same, then sort by timeslot
      */
     private void printZip(){
+        System.out.println();
         System.out.println("*list of appointments by zip and time slot.");
         schedule.printByZip();
         System.out.println("*end of schedule*");
@@ -146,6 +151,7 @@ public class Kiosk {
      then firstname, then date of birth
      */
     private void printPatient(){
+        System.out.println();
         System.out.println("*list of appointments by patient");
         schedule.printByPatient();
         System.out.println("*end of list*");

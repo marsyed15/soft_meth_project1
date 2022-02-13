@@ -118,15 +118,26 @@ public class Schedule {
      Prints all appointments in appointments' array sorted by zipCode. If two appts
      have same zipCode, display the one with the earlier timeslot first
      */
-    //fix this to sort by timeslot
     public void printByZip() {
         for (int i = 1; i < numAppts; i++) {
             Appointment appt = appointments[i];
+            String zip = appt.getLocation().getZipCode();
             int j = i - 1;
             while (j >= 0 && appointments[j].getLocation().getZipCode()
-                    .compareTo(appt.getLocation().getZipCode()) == -1) {
-                appointments[j + 1] = appointments[j];
-                j--;
+                    .compareTo(zip) >= 0) {
+                if (appointments[j].getLocation().getZipCode().compareTo(zip) > 0) {
+                    appointments[j + 1] = appointments[j];
+                    j--;
+                }
+                else if(appointments[j].getLocation().getZipCode()
+                        .compareTo(zip) == 0) {
+                    if(appointments[j].getSlot().compareTo(appt.getSlot()) == 1) {
+                        appointments[j + 1] = appointments[j];
+                        j--;
+                    }
+                    else
+                        break;
+                }
             }
             appointments[j + 1] = appt;
         }
