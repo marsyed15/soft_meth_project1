@@ -6,6 +6,7 @@ import java.util.Scanner;
  A user interface class to process the transactions entered through the console
  and outputs the results to the console. An instance of Kiosk class can process
  a single transaction, as well as a batch of transactions.
+ @author maryam, nabihah
  */
 
 public class Kiosk {
