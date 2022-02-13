@@ -148,7 +148,7 @@ public class Schedule {
         print();
     }
     /**
-     Prints all appointments in appointments' array sorted by patients. Sort by
+     Prints all appointments in appointments' array sorted by patients. Sorted by
      patients' last name, then first name, then date of birth.
      */
     public void printByPatient() {

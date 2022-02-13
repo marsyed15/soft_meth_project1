@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  A user interface class to process the transactions entered through the console
- and output the results to the console. An instance of Kiosk class can process
+ and outputs the results to the console. An instance of Kiosk class can process
  a single transaction, as well as a batch of transactions.
  */
 
@@ -47,7 +47,7 @@ public class Kiosk {
     }
     /**
      Adds appointment to schedule if possible, otherwise prints out error message
-     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by
+     @param input A string in this format: "hh/mm/yyy" (DOB), followed by
      "firstName lastName", followed by "hh/mm/yyy mm:hh location"
      */
     private void book(String input) {
@@ -92,7 +92,7 @@ public class Kiosk {
     }
     /**
      Removes all appointments for a certain patient from schedule
-     @param input A string with in this format: "hh/mm/yyy" (DOB),
+     @param input A string in this format: "hh/mm/yyy" (DOB),
      followed by "firstName lastName"
      */
     private void cancelAll(String input) {
@@ -119,7 +119,7 @@ public class Kiosk {
     /**
      Removes a single appointment from schedule, prints error message
      if not possible
-     @param input A string with in this format: "hh/mm/yyy" (DOB),
+     @param input A string in this format: "hh/mm/yyy" (DOB),
      followed by "firstName lastName", followed by "hh/mm/yyy mm:hh location"
      */
     private void cancel(String input) {

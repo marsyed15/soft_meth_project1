@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 /**
  Represents a calender date with three fields: day, month, and year. Can check
- if date is a valid calender date.
+ if date is a valid calendar date.
  @author nabihah, maryam
  */
 
@@ -44,7 +44,6 @@ public class Date implements Comparable<Date> {
      */
     public Date() {
         Calendar todayDate = Calendar.getInstance();
-        //adding 1 b/c the months in the calender class start at 0
         this.month = todayDate.get(Calendar.MONTH) + 1;
         this.day = todayDate.get(Calendar.DATE);
         this.year = todayDate.get(Calendar.YEAR);

@@ -2,7 +2,7 @@ package vaccine_service;
 
 /**
  Represents locations where vaccine services are being offered. Can check whether
- location is a valid location (are vaccines being offered there?).
+ location is a valid location, i.e if vaccines are offered there.
  @author nabihah, maryam
  */
 public enum Location {

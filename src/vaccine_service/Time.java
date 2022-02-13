@@ -12,6 +12,7 @@ public class Time implements Comparable<Time> {
     public static final int minMinute = 0;
     public static final int maxMinute = 45;
     public static final int intervalTime = 15;
+    public static final int doubleDigit = 10;
     private int hour;
     private int minute;
 
@@ -42,7 +43,7 @@ public class Time implements Comparable<Time> {
      */
     @Override
     public String toString() {
-        if (this.minute < 10) { //would this be a magic number?
+        if (this.minute < doubleDigit) {
             return this.hour + ":0" + this.minute;
         }
         return this.hour + ":" + this.minute;
@@ -77,13 +78,6 @@ public class Time implements Comparable<Time> {
             return time.hour == this.hour && time.minute == this.minute;
         }
         return false;
-    }
-    //testbed
-    public static void main(String[] args) {
-        Time time = new Time("24:05");
-        Time time2 = new Time("11:05");
-        System.out.println(time.isValid());
-        System.out.println(time.compareTo(time2));
     }
 }
 

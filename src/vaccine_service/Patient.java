@@ -12,7 +12,7 @@ public class Patient implements Comparable<Patient> {
 
     /**
      Creates an instance of Patient with given String
-     @param patient A string with patient in mm/dd/yyyy firstName lastName format
+     @param patient A string with patient in "mm/dd/yyyy firstName lastName" format
      */
     public Patient(String patient) {
         String[] split = patient.split(" ");
@@ -29,7 +29,7 @@ public class Patient implements Comparable<Patient> {
     }
     /**
      Overrides toString method.
-     @return Patient as a string in firstName lastName, DOB: hh/mm/yyy format
+     @return Patient as a string in "firstName lastName, DOB: hh/mm/yyy" format
      */
     @Override
     public String toString() {
@@ -73,13 +73,5 @@ public class Patient implements Comparable<Patient> {
                     .equals(this.fname) && patient.dob.equals(this.dob);
         }
         return false;
-    }
-    //testbed main
-    public static void main(String[] args) {
-        Patient p = new Patient("10/7/2001 Nabihah Rashid");
-        Patient s = new Patient("02/15/2001 Maryam Syed");
-        String res = p.toString();
-        System.out.println(res);
-        System.out.println(s.compareTo(p));
     }
 }
