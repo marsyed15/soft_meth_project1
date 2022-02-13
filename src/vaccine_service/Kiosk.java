@@ -86,18 +86,26 @@ public class Kiosk {
     }
     /**
      Removes all appointments for a certain patient from schedule
-     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
-     followed by "hh/mm/yyy mm:hh location"
+     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName"
      */
     private void cancelAll(String input){
-        Patient cancelPatient = new Appointment(input.substring(2)).getPatient();
+        String split[] = input.split(" ");
+        Patient cancelPatient = new Patient(split[1] + " " + split[2] + " " + split[3]);
+        boolean cancelled = false;
         for(int i = 0; i < schedule.getNumAppts(); i++) {
             if(schedule.getAppointments()[i].getPatient().equals(cancelPatient)){
                 schedule.remove(schedule.getAppointments()[i]);
+                cancelled = true;
+                i--;
             }
         }
-        System.out.println("All appointments for " + cancelPatient.toString() +
-                " have been cancelled");
+        if(cancelled){
+            System.out.println("All appointments for " + cancelPatient.toString() +
+                    " have been cancelled");
+        }
+        else {
+            System.out.println("Not cancelled, appointment for patient does not exist.");
+        }
     }
     /**
      Removes a single appointment from schedule, prints error message if not possible
