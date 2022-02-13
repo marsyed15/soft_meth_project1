@@ -1,6 +1,5 @@
 package vaccine_service;
 
-import java.time.Period;
 import java.util.Scanner;
 
 /**
@@ -97,7 +96,7 @@ public class Kiosk {
      followed by "firstName lastName"
      */
     private void cancelAll(String input) {
-        String split[] = input.split(" ");
+        String[] split = input.split(" ");
         Patient cancelPatient = new Patient(split[1] + " " + split[2] + " "
                 + split[3]);
         boolean cancelled = false;
