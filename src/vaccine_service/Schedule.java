@@ -140,7 +140,7 @@ public class Schedule {
         for (int i = 1; i < numAppts; i++) {
             Appointment appt = appointments[i];
             int j = i - 1;
-            while (j >= 0 && appointments[j].getPatient().compareTo(appt.getPatient()) == -1) {
+            while (j >= 0 && appointments[j].getPatient().compareTo(appt.getPatient()) == 1) {
                 appointments[j + 1] = appointments[j];
                 j--;
             }
