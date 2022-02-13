@@ -24,7 +24,9 @@ public class Patient implements Comparable<Patient> {
      Gets the DOB of the patient
      @return A date object representing the DOB in the patient object
      */
-    public Date getDob() { return this.dob; }
+    public Date getDob() {
+        return this.dob;
+    }
     /**
      Overrides toString method.
      @return Patient as a string in firstName lastName, DOB: hh/mm/yyy format
@@ -67,8 +69,8 @@ public class Patient implements Comparable<Patient> {
     public boolean equals(Object obj) {
         if (obj instanceof Patient) {
             Patient patient = (Patient) obj;
-            return patient.lname.equals(this.lname) && patient.fname.equals(this.fname)
-                    && patient.dob.equals(this.dob);
+            return patient.lname.equals(this.lname) && patient.fname
+                    .equals(this.fname) && patient.dob.equals(this.dob);
         }
         return false;
     }

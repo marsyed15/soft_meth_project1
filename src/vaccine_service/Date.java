@@ -3,8 +3,8 @@ package vaccine_service;
 import java.util.Calendar;
 
 /**
- Represents a calender date with three fields: day, month, and year. Can check if
- date is a valid calender date.
+ Represents a calender date with three fields: day, month, and year. Can check
+ if date is a valid calender date.
  @author nabihah, maryam
  */
 
@@ -12,11 +12,11 @@ public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
-    public static final int MINIMUMYEAR = 1900;
-    public static final int DAYSINFEB = 28;
-    public static final int DAYSINLEAPYEARFEB = 29;
-    public static final int DAYSINAMONTH = 30;
-    public static final int DAYSINSOMEMONTHS = 31;
+    public static final int MINIMUM_YEAR = 1900;
+    public static final int MAX_DAYS_IN_FEB = 28;
+    public static final int MAX_DAYS_IN_LEAP_YEAR_FEB = 29;
+    public static final int MAX_DAYS_IN_FOUR_MONTHS = 30;
+    public static final int MAX_DAYS_IN_SEVEN_MONTHS = 31;
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUARTERCENTENNIAL = 400;
@@ -110,26 +110,26 @@ public class Date implements Comparable<Date> {
      Checks if Date object is a valid date.
      @return true if given Date object is valid, false otherwise.
      */
-    public Boolean isValid() { //MAGIC NUMBERS
+    public Boolean isValid() {
         Boolean leapYear = isLeapYear(this.year);
         Boolean ThirtyOneDays = shouldHave31Days(this.month);
 
         if(this.month > MONTHS)
             return false;
 
-        if(this.month == FEBRUARY && this.day > DAYSINFEB) {
-            if((this.day == DAYSINLEAPYEARFEB && leapYear == true))
+        if(this.month == FEBRUARY && this.day > MAX_DAYS_IN_FEB) {
+            if((this.day == MAX_DAYS_IN_LEAP_YEAR_FEB && leapYear == true))
                 return true;
             return false;
         }
 
-        if(this.day > DAYSINAMONTH) {
-            if(this.day == DAYSINSOMEMONTHS && ThirtyOneDays == true)
+        if(this.day > MAX_DAYS_IN_FOUR_MONTHS) {
+            if(this.day == MAX_DAYS_IN_SEVEN_MONTHS && ThirtyOneDays == true)
                 return true;
             return false;
         }
 
-        if(this.year < MINIMUMYEAR){
+        if(this.year < MINIMUM_YEAR) {
             return false;
         }
         return true;

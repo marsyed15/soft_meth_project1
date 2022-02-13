@@ -4,7 +4,7 @@ package vaccine_service;
  Represents schedule of vaccine appointments in 5 different counties from 9:15 to
  16:45 using an array of objects.
 
- An appointment can be added, removed, or serached for from the schedule.
+ An appointment can be added, removed, or searched for from the schedule.
  All appointments can be printed as they are in the array, or sorted by zipCode
  or patients and then printed.
  @author maryam, nabihah
@@ -27,14 +27,18 @@ public class Schedule {
      @return An array object representing the appointment's array in the Schedule
      object
      */
-    public Appointment[] getAppointments() { return  this.appointments; }
+    public Appointment[] getAppointments() {
+        return  this.appointments;
+    }
 
     /**
      Gets the numAppts from Schedule
      @return An int representing the number of appointments currently
      in the schedule object
      */
-    public int getNumAppts() {return this.numAppts; }
+    public int getNumAppts() {
+        return this.numAppts;
+    }
 
     /**
     Checks if given appointment exists in array of appointments
@@ -42,8 +46,8 @@ public class Schedule {
      @return index of appointment in array if found, or NOT_FOUND otherwise
      */
     private int find(Appointment appt) {
-        for (int i = 0; i < this.numAppts; i++){
-            if(this.appointments[i].equals(appt)){
+        for (int i = 0; i < this.numAppts; i++) {
+            if(this.appointments[i].equals(appt)) {
                 return i;
             }
         }
@@ -56,7 +60,7 @@ public class Schedule {
         int newSize = this.appointments.length + 4;
         Appointment newAppointmentsArray[] = new Appointment[newSize];
 
-        for(int i = 0; i < this.appointments.length; i++){
+        for(int i = 0; i < this.appointments.length; i++) {
             newAppointmentsArray[i] = this.appointments[i];
         }
         this.appointments = newAppointmentsArray;
@@ -89,8 +93,8 @@ public class Schedule {
      */
     public boolean remove(Appointment appt) {
         int shiftLeftIndex = 0;
-        for (int i = 0; i < this.numAppts; i++){
-            if(this.appointments[i].equals(appt)){
+        for (int i = 0; i < this.numAppts; i++) {
+            if(this.appointments[i].equals(appt)) {
                 shiftLeftIndex = i;
                 break;
             }
@@ -151,7 +155,8 @@ public class Schedule {
         for (int i = 1; i < numAppts; i++) {
             Appointment appt = appointments[i];
             int j = i - 1;
-            while (j >= 0 && appointments[j].getPatient().compareTo(appt.getPatient()) == 1) {
+            while (j >= 0 && appointments[j].getPatient()
+                    .compareTo(appt.getPatient()) == 1) {
                 appointments[j + 1] = appointments[j];
                 j--;
             }

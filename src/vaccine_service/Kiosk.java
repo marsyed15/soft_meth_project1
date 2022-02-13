@@ -21,7 +21,7 @@ public class Kiosk {
         Patient patient = appt.getPatient();
         Timeslot timeslot = appt.getSlot();
         Location location = appt.getLocation();
-        for (int i = 0; i < schedule.getNumAppts(); i++){
+        for (int i = 0; i < schedule.getNumAppts(); i++) {
             if(schedule.getAppointments()[i].getSlot().equals(timeslot) &&
                     schedule.getAppointments()[i].getLocation() == location &&
                     schedule.getAppointments()[i].getPatient().compareTo(patient) != 0)
@@ -34,10 +34,10 @@ public class Kiosk {
      @param appt an instance of Appointment
      @return true if appointment already exists, false otherwise
      */
-    private Boolean apptForPatientExists(Appointment appt){
+    private Boolean apptForPatientExists(Appointment appt) {
         Patient name = appt.getPatient();
         Date apptDate = appt.getSlot().getDate();
-        for (int i = 0; i < schedule.getNumAppts(); i++){
+        for (int i = 0; i < schedule.getNumAppts(); i++) {
             if(schedule.getAppointments()[i].getPatient().equals(name) && schedule
                     .getAppointments()[i].getSlot().getDate().equals(apptDate) &&
                     schedule.getAppointments()[i].getLocation() != appt.getLocation())
@@ -47,76 +47,82 @@ public class Kiosk {
     }
     /**
      Adds appointment to schedule if possible, otherwise prints out error message
-     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
-     followed by "hh/mm/yyy mm:hh location"
+     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by
+     "firstName lastName", followed by "hh/mm/yyy mm:hh location"
      */
-    private void book(String input){
+    private void book(String input) {
         Date todaysDate = new Date();
         Appointment currAppt = new Appointment(input.substring(2));
         String[] split = input.split(" ");
 
-        if(currAppt.getPatient().getDob().isValid() == false)
+        if(currAppt.getPatient().getDob().isValid() == false) {
             System.out.println("Invalid date of birth!");
-
+        }
         else if(currAppt.getSlot().getDate().isValid() == false || currAppt.
-                getSlot().getDate().getYear() > todaysDate.getYear())
+                getSlot().getDate().getYear() > todaysDate.getYear()) {
             System.out.println("Invalid appointment date!");
-
-        else if(currAppt.getPatient().getDob().compareTo(todaysDate) >= 0)
+        }
+        else if(currAppt.getPatient().getDob().compareTo(todaysDate) >= 0) {
             System.out.println("Date of birth invalid -> it is a future date.");
-
-        else if(currAppt.getSlot().getDate().compareTo(todaysDate) <= 0)
+        }
+        else if(currAppt.getSlot().getDate().compareTo(todaysDate) <= 0) {
             System.out.println("Appointment date invalid -> must be a future date.");
-
-        else if(currAppt.getSlot().getTime().isValid() == false)
+        }
+        else if(currAppt.getSlot().getTime().isValid() == false) {
             System.out.println("Invalid appointment time! Must enter a time " +
                     "between 9:00 and 16:45 with a 15-minute interval.");
-
-        else if(slotAlreadyBooked(currAppt) == true)
+        }
+        else if(slotAlreadyBooked(currAppt) == true) {
             System.out.println("Time slot has been taken at this location.");
-
-        else if(Location.locationExists(split[split.length - 1]) == false)
+        }
+        else if(Location.locationExists(split[split.length - 1]) == false) {
             System.out.println("Invalid location!");
-
-        else if(apptForPatientExists(currAppt))
-            System.out.println("Same patient cannot book an appointment with the same date.");
-
-        else if(schedule.add(currAppt) == false)
+        }
+        else if(apptForPatientExists(currAppt)) {
+            System.out.println("Same patient cannot book an appointment " +
+                    "with the same date.");
+        }
+        else if(schedule.add(currAppt) == false) {
             System.out.println("Same appointment exists in the schedule.");
-
-        else
+        }
+        else {
             System.out.println("Appointment booked and added to the schedule.");
+        }
     }
     /**
      Removes all appointments for a certain patient from schedule
-     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName"
+     @param input A string with in this format: "hh/mm/yyy" (DOB),
+     followed by "firstName lastName"
      */
-    private void cancelAll(String input){
+    private void cancelAll(String input) {
         String split[] = input.split(" ");
-        Patient cancelPatient = new Patient(split[1] + " " + split[2] + " " + split[3]);
+        Patient cancelPatient = new Patient(split[1] + " " + split[2] + " "
+                + split[3]);
         boolean cancelled = false;
         for(int i = 0; i < schedule.getNumAppts(); i++) {
-            if(schedule.getAppointments()[i].getPatient().equals(cancelPatient)){
+            if(schedule.getAppointments()[i].getPatient().equals(cancelPatient)) {
                 schedule.remove(schedule.getAppointments()[i]);
                 cancelled = true;
                 i--;
             }
         }
-        if(cancelled){
-            System.out.println("All appointments for " + cancelPatient.toString() +
-                    " have been cancelled");
+        if(cancelled) {
+            System.out.println("All appointments for " + cancelPatient.toString()
+                    + " have been cancelled");
         }
         else {
-            System.out.println("Not cancelled, appointment for patient does not exist.");
+            System.out.println("Not cancelled, appointment for patient " +
+                    "does not exist.");
         }
     }
     /**
-     Removes a single appointment from schedule, prints error message if not possible
-     @param input A string with in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
-     followed by "hh/mm/yyy mm:hh location"
+     Removes a single appointment from schedule, prints error message
+     if not possible
+     @param input A string with in this format: "hh/mm/yyy" (DOB),
+     followed by "firstName lastName", followed by "hh/mm/yyy mm:hh location"
      */
-    private void cancel(String input){
-        if(schedule.remove(new Appointment(input.substring(2)))){
+    private void cancel(String input) {
+        if(schedule.remove(new Appointment(input.substring(2)))) {
             System.out.println("Appointment cancelled.");
         }
         else {
@@ -126,7 +132,7 @@ public class Kiosk {
     /**
      Prints all appointments currently in schedule
      */
-    private void print(){
+    private void print() {
         System.out.println();
         System.out.println("*list of appointments in the schedule*");
         schedule.print();
@@ -138,7 +144,7 @@ public class Kiosk {
      Prints all appointments currently in schedule sorted by zipcode. If zipcodes
      are the same, then sort by timeslot
      */
-    private void printZip(){
+    private void printZip() {
         System.out.println();
         System.out.println("*list of appointments by zip and time slot.");
         schedule.printByZip();
@@ -150,7 +156,7 @@ public class Kiosk {
      Prints all appointments currently in schedule sorted by patients lastname,
      then firstname, then date of birth
      */
-    private void printPatient(){
+    private void printPatient() {
         System.out.println();
         System.out.println("*list of appointments by patient");
         schedule.printByPatient();
@@ -167,25 +173,25 @@ public class Kiosk {
         while(true){
             String input = userInput.nextLine();
             String [] command = input.split(" ");
-            if(command[0].equals("B")){
+            if(command[0].equals("B")) {
                 book(input);
             }
-            else if(command[0].equals("CP")){
+            else if(command[0].equals("CP")) {
                 cancelAll(input);
             }
-            else if(command[0].equals("C")){
+            else if(command[0].equals("C")) {
                 cancel(input);
             }
-            else if(command[0].equals("P")){
+            else if(command[0].equals("P")) {
                 print();
             }
-            else if(command[0].equals("PZ")){
+            else if(command[0].equals("PZ")) {
                 printZip();
             }
-            else if(command[0].equals("PP")){
+            else if(command[0].equals("PP")) {
                 printPatient();
             }
-            else if(command[0].equals("Q")){
+            else if(command[0].equals("Q")) {
                 break;
             }
             else {

@@ -12,14 +12,15 @@ public class Appointment {
 
     /**
      Creates an instance of Appointment with given String
-     @param appt A string with appointment in this format: "hh/mm/yyy" (DOB), followed by "firstName lastName",
-     followed by "hh/mm/yyy mm:hh location"
+     @param appt A string with appointment in this format:
+     "hh/mm/yyy" (DOB), followed by "firstName lastName", followed by
+     "hh/mm/yyy mm:hh location"
      */
     public Appointment(String appt) {
         String[] split = appt.split(" ");
         this.patient = new Patient(split[0] + " " + split[1] + " " + split[2]);
         this.slot = new Timeslot(split[3] + " " + split[4]);
-        switch(split[5].toLowerCase()){
+        switch(split[5].toLowerCase()) {
             case("somerset"):
                 this.location = Location.SOMERSET;
                 break;
@@ -72,8 +73,8 @@ public class Appointment {
     public boolean equals(Object obj) {
         if (obj instanceof Appointment) {
             Appointment appointment = (Appointment) obj;
-            // define equals class for Location class (?)
-            return appointment.patient.equals(this.patient) && appointment.slot.equals(this.slot)
+            return appointment.patient.equals(this.patient) &&
+                    appointment.slot.equals(this.slot)
                     && appointment.location == this.location;
         }
         return false;
@@ -81,13 +82,15 @@ public class Appointment {
 
     /**
      Overrides toString method.
-     @return Appointment as a string in "firstName lastName hh/mm/yyyy, Appointment Detail: hh/mm/yyy, hh:mm,
-     locationCityName locationZipCode, location" format
+     @return Appointment as a string in "firstName lastName hh/mm/yyyy,
+     Appointment Detail: hh/mm/yyy, hh:mm, locationCityName locationZipCode,
+     location" format
      */
     @Override
     public String toString() {
-        return this.patient.toString() + ", " + "Appointment Detail: " + this.slot.toString() + ", " +
-                location.getCityName() + " " + location.getZipCode() + ", " + location;
+        return this.patient.toString() + ", " + "Appointment Detail: " +
+                this.slot.toString() + ", " + location.getCityName() + " " +
+                location.getZipCode() + ", " + location;
     }
     //testbed main
     public static void main(String[] args) {
@@ -104,5 +107,4 @@ public class Appointment {
         schedule.print();
         schedule.printByPatient();
     }
-
 }

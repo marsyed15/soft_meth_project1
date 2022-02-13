@@ -78,7 +78,8 @@ public class Timeslot implements Comparable<Timeslot> {
     public boolean equals(Object obj) {
         if (obj instanceof Timeslot) {
             Timeslot timeslot = (Timeslot) obj;
-            return timeslot.time.equals(this.time) && timeslot.date.equals(this.date);
+            return timeslot.time.equals(this.time) &&
+                    timeslot.date.equals(this.date);
         }
         return false;
     }
