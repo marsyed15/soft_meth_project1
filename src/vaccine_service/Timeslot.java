@@ -86,32 +86,32 @@ public class Timeslot implements Comparable<Timeslot> {
     //testbed
     public static void main (String[]args){
         //testcase 1
-        Timeslot slot = new Timeslot("02/14/2021 9:40");
-        Timeslot slot2 = new Timeslot("02/14/2023 8:00");
+        Timeslot slot = new Timeslot("2/14/2021 9:40");
+        Timeslot slot2 = new Timeslot("2/14/2023 8:00");
         System.out.println(slot.compareTo(slot2));
         //testcase 2
-        Timeslot slot3 = new Timeslot("01/14/2021 10:40");
-        Timeslot slot4 = new Timeslot("03/14/2021 7:00");
+        Timeslot slot3 = new Timeslot("1/14/2021 10:40");
+        Timeslot slot4 = new Timeslot("3/14/2021 7:00");
         System.out.println(slot3.compareTo(slot4));
         //testcase 3
-        Timeslot slot5 = new Timeslot("06/10/2020 10:40");
-        Timeslot slot6 = new Timeslot("06/14/2020 7:00");
+        Timeslot slot5 = new Timeslot("6/10/2020 10:40");
+        Timeslot slot6 = new Timeslot("6/14/2020 7:00");
         System.out.println(slot5.compareTo(slot6));
         //testcase 4
-        Timeslot slot7 = new Timeslot("05/12/2020 10:50");
-        Timeslot slot8 = new Timeslot("05/12/2019 12:00");
+        Timeslot slot7 = new Timeslot("5/12/2020 10:50");
+        Timeslot slot8 = new Timeslot("5/12/2019 12:00");
         System.out.println(slot7.compareTo(slot8));
         //testcase 5
-        Timeslot slot9 = new Timeslot("04/20/2019 10:50");
-        Timeslot slot10 = new Timeslot("05/20/2019 12:00");
+        Timeslot slot9 = new Timeslot("5/20/2019 10:50");
+        Timeslot slot10 = new Timeslot("4/20/2019 12:00");
         System.out.println(slot9.compareTo(slot10));
         //testcase 6
-        Timeslot slot11 = new Timeslot("05/20/2019 10:50");
-        Timeslot slot12 = new Timeslot("05/12/2010 12:00");
+        Timeslot slot11 = new Timeslot("5/20/2019 10:50");
+        Timeslot slot12 = new Timeslot("5/12/2010 12:00");
         System.out.println(slot11.compareTo(slot12));
         //testcase 7
-        Timeslot slot13 = new Timeslot("01/13/2021 10:50");
-        Timeslot slot14 = new Timeslot("01/13/2021 10:50");
+        Timeslot slot13 = new Timeslot("1/13/2021 10:50");
+        Timeslot slot14 = new Timeslot("1/13/2021 10:50");
         System.out.println(slot13.compareTo(slot14));
         //testcase 8
         Timeslot slot15 = new Timeslot("12/12/2020 2:10");

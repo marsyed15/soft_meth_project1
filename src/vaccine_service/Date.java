@@ -194,9 +194,6 @@ public class Date implements Comparable<Date> {
         //testcase5
         Date testDate4 = new Date("2/31/2020");
         System.out.println(testDate4.isValid());
-        //testcase6
-        Date testDate5 = new Date("10/7/1899");
-        System.out.println(testDate5.isValid());
     }
 }
 
